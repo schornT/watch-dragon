@@ -20,15 +20,5 @@
   ],
   "sdkVersion": "3",
   "capabilities": 
-  [ "location", "configurable" ],
-
-  "resources": {
-    "media": [
-      {
-        "type":"raw",
-        "name":"output",
-        "file":"images/outfile2.png"
-      }
-    ]
-  }
+  [ "location", "configurable" ]
 }
