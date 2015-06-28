@@ -6,7 +6,10 @@
   "versionCode": 1,
   "versionLabel": "0.01",
   "sdkVersion": "3",
-  "targetPlatforms": ["basalt"],
+  "targetPlatforms": [
+    "aplite",
+    "basalt"
+  ],
   "watchapp": {
     "watchface": true
   },
@@ -15,10 +18,8 @@
     "KEY_TEMPERATURE": 0,
     "KEY_CONDITIONS": 1
   },
-  "targetPlatforms": [
-    "basalt"
-  ],
-  "sdkVersion": "3",
-  "capabilities": 
-  [ "location", "configurable" ]
+  "capabilities": [
+    "location",
+    "configurable"
+  ]
 }
