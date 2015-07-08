@@ -7,7 +7,6 @@
   "versionLabel": "0.01",
   "sdkVersion": "3",
   "targetPlatforms": [
-    "aplite",
     "basalt"
   ],
   "watchapp": {
@@ -16,5 +15,15 @@
   "capabilities": [
     "location",
     "configurable"
-  ]
+  ],
+
+  "resources": {
+    "media": [
+      {
+        "type":"raw",
+        "name":"output",
+        "file":"images/outfile2.png"
+      }
+    ]
+  }
 }
