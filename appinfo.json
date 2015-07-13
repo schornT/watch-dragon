@@ -1,29 +1,29 @@
 {
-  "uuid": "785fae95-01d2-4de6-a577-d771197b8673",
-  "shortName": "dragon",
-  "longName": "dragon",
-  "companyName": "Tristan Schorn",
-  "versionCode": 1,
-  "versionLabel": "0.01",
-  "sdkVersion": "3",
-  "targetPlatforms": [
-    "basalt"
-  ],
-  "watchapp": {
-    "watchface": true
-  },
-  "capabilities": [
-    "location",
-    "configurable"
-  ],
-
-  "resources": {
-    "media": [
-      {
-        "type":"raw",
-        "name":"output",
-        "file":"images/outfile2.png"
-      }
-    ]
-  }
+    "appKeys": {},
+    "capabilities": [
+        "location",
+        "configurable"
+    ],
+    "companyName": "Tristan Schorn",
+    "longName": "dragon",
+    "projectType": "native",
+    "resources": {
+        "media": [
+            {
+                "file": "data/outfile2.png",
+                "name": "output",
+                "type": "raw"
+            }
+        ]
+    },
+    "sdkVersion": "3",
+    "shortName": "dragon",
+    "targetPlatforms": [
+        "basalt"
+    ],
+    "uuid": "785fae95-01d2-4de6-a577-d771197b8673",
+    "versionLabel": "0.01",
+    "watchapp": {
+        "watchface": true
+    }
 }
