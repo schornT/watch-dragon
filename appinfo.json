@@ -13,6 +13,11 @@
                 "file": "data/outfile2.png",
                 "name": "output",
                 "type": "raw"
+            },
+            {
+                "file": "images/dragon_background_trans_coloured.png",
+                "name": "DRAGON",
+                "type": "raw"
             }
         ]
     },
