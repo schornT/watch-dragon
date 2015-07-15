@@ -10,13 +10,13 @@
     "resources": {
         "media": [
             {
-                "file": "data/outfile2.png",
-                "name": "output",
+                "file": "data/dragon_background_trans_coloured.png",
+                "name": "DRAGON",
                 "type": "raw"
             },
             {
-                "file": "images/dragon_background_trans_coloured.png",
-                "name": "DRAGON",
+                "file": "data/outfile2.png",
+                "name": "output",
                 "type": "raw"
             }
         ]

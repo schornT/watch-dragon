@@ -49,18 +49,18 @@ static void hands_update_proc(Layer *layer, GContext *ctx) {
 static void window_load(Window *window) {
   Layer *window_layer = window_get_root_layer(window);
   GRect bounds = layer_get_frame(window_layer);
+  
+  s_hands_layer = layer_create(bounds);
+  layer_set_update_proc(s_hands_layer, hands_update_proc);
+  layer_add_child(window_layer, s_hands_layer);
 
   s_image_bitmap = gbitmap_create_with_resource(RESOURCE_ID_DRAGON);
 
   s_image_layer = bitmap_layer_create(bounds);
   bitmap_layer_set_bitmap(s_image_layer, s_image_bitmap);
-  //bitmap_layer_set_compositing_mode(s_image_layer, GCompOpSet);
+  bitmap_layer_set_compositing_mode(s_image_layer, GCompOpSet);
   bitmap_layer_set_alignment(s_image_layer, GAlignCenter);
   layer_add_child(window_layer, bitmap_layer_get_layer(s_image_layer));
-  
-  s_hands_layer = layer_create(bounds);
-  layer_set_update_proc(s_hands_layer, hands_update_proc);
-  layer_add_child(window_layer, s_hands_layer);
 }
 
 static void window_unload(Window *window) {
