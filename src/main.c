@@ -4,8 +4,13 @@
 static Window *window;
 static Layer *s_hands_layer;
 static BitmapLayer *s_image_layer;
-static GBitmap *s_image_bitmap;
 
+#ifdef PBL_PLATFORM_APLITE
+static GBitmap *s_white_bitmap, *s_black_bitmap;
+#elif PBL_PLATFORM_BASALT
+static GBitmap *s_image_bitmap;
+#endif
+  
 static GPath *s_minute_arrow, *s_hour_arrow;
 
 static void handle_second_tick(struct tm *tick_time, TimeUnits units_changed) {
@@ -54,18 +59,40 @@ static void window_load(Window *window) {
   layer_set_update_proc(s_hands_layer, hands_update_proc);
   layer_add_child(window_layer, s_hands_layer);
 
-  s_image_bitmap = gbitmap_create_with_resource(RESOURCE_ID_DRAGON);
-
+  #ifdef PBL_PLATFORM_APLITE
+    s_white_bitmap = gbitmap_create_with_resource(RESOURCE_ID_DRAGON_WHITE);
+    s_black_bitmap = gbitmap_create_with_resource(RESOURCE_ID_DRAGON_BLACK);
+  #elif PBL_PLATFORM_BASALT
+    s_image_bitmap = gbitmap_create_with_resource(RESOURCE_ID_DRAGON);
+  #endif
+  
   s_image_layer = bitmap_layer_create(bounds);
-  bitmap_layer_set_bitmap(s_image_layer, s_image_bitmap);
-  bitmap_layer_set_compositing_mode(s_image_layer, GCompOpSet);
+  
+  #ifdef PBL_PLATFORM_APLITE
+    bitmap_layer_set_compositing_mode(s_image_layer, GCompOpOr);
+    bitmap_layer_set_bitmap(s_image_layer, s_white_bitmap);
+    
+    bitmap_layer_set_compositing_mode(s_image_layer, GCompOpClear);
+    bitmap_layer_set_bitmap(s_image_layer, s_black_bitmap);    
+  #elif PBL_PLATFORM_BASALT
+    bitmap_layer_set_bitmap(s_image_layer, s_image_bitmap);
+    bitmap_layer_set_compositing_mode(s_image_layer, GCompOpSet); 
+  #endif
+  
+  
   bitmap_layer_set_alignment(s_image_layer, GAlignCenter);
   layer_add_child(window_layer, bitmap_layer_get_layer(s_image_layer));
 }
 
 static void window_unload(Window *window) {
   bitmap_layer_destroy(s_image_layer);
-  gbitmap_destroy(s_image_bitmap);
+  
+  #ifdef PBL_PLATFORM_APLITE
+    gbitmap_destroy(s_black_bitmap);
+    gbitmap_destroy(s_white_bitmap);
+  #elif PBL_PLATFORM_BASALT
+    gbitmap_destroy(s_image_bitmap);
+  #endif
   
   layer_destroy(s_hands_layer);
 }

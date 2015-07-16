@@ -10,27 +10,26 @@
     "resources": {
         "media": [
             {
-                "file": "data/dragon_background_trans_coloured.png",
-                "name": "DRAGON",
-                "type": "png",
-                "targetPlatforms": ["basalt"]
+                "file": "data/outfile2.png",
+                "name": "output",
+                "type": "raw"
             },
             {
                 "file": "images/dragon_background_trans.png",
                 "name": "DRAGON",
-                "type": "png-trans",
-                "targetPlatforms": ["aplite"]
+                "type": "png-trans"
             },
             {
-                "file": "data/outfile2.png",
-                "name": "output",
-                "type": "raw"
+                "file": "images/dragon_background_trans_coloured.png",
+                "name": "DRAGON",
+                "type": "png"
             }
         ]
     },
     "sdkVersion": "3",
     "shortName": "dragon",
     "targetPlatforms": [
+        "aplite",
         "basalt"
     ],
     "uuid": "785fae95-01d2-4de6-a577-d771197b8673",
