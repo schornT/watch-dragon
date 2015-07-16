@@ -12,13 +12,13 @@
             {
                 "file": "data/dragon_background_trans_coloured.png",
                 "name": "DRAGON",
-                "type": "raw",
+                "type": "png",
                 "targetPlatforms": ["basalt"]
             },
             {
                 "file": "images/dragon_background_trans.png",
                 "name": "DRAGON",
-                "type": "raw",
+                "type": "png-trans",
                 "targetPlatforms": ["aplite"]
             },
             {
