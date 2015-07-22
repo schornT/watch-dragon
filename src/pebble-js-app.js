@@ -3,7 +3,7 @@
 Pebble.addEventListener("showConfiguration",
   function(e) {
     //Load the remote config page
-    Pebble.openURL("https://dl.dropboxusercontent.com/u/18421157/Link%20to%20h2g2-config.html");
+    Pebble.openURL("https://dl.dropboxusercontent.com/u/18421157/Link%20to%20dragon-config.html");
   }
 );
 
