@@ -3,11 +3,13 @@
 
 static Window *window;
 static Layer *s_hands_layer;
-static BitmapLayer *s_image_layer;
+
 
 #ifdef PBL_PLATFORM_APLITE
+static BitmapLayer *s_black_layer, *s_white_layer;
 static GBitmap *s_white_bitmap, *s_black_bitmap;
 #elif PBL_PLATFORM_BASALT
+static BitmapLayer *s_image_layer;
 static GBitmap *s_image_bitmap;
 #endif
   
@@ -31,11 +33,11 @@ static void hands_update_proc(Layer *layer, GContext *ctx) {
   };
 
   // second hand
-  graphics_context_set_stroke_color(ctx, GColorWhite);
+  graphics_context_set_stroke_color(ctx, GColorBlack);
   graphics_draw_line(ctx, second_hand, center);
 
   // minute/hour hand
-  graphics_context_set_fill_color(ctx, GColorWhite);
+  graphics_context_set_fill_color(ctx, GColorBlack);
   graphics_context_set_stroke_color(ctx, GColorBlack);
 
   gpath_rotate_to(s_minute_arrow, TRIG_MAX_ANGLE * t->tm_min / 60);
@@ -66,32 +68,41 @@ static void window_load(Window *window) {
     s_image_bitmap = gbitmap_create_with_resource(RESOURCE_ID_DRAGON);
   #endif
   
-  s_image_layer = bitmap_layer_create(bounds);
+  //s_image_layer = bitmap_layer_create(bounds);
   
   #ifdef PBL_PLATFORM_APLITE
-    bitmap_layer_set_compositing_mode(s_image_layer, GCompOpOr);
-    bitmap_layer_set_bitmap(s_image_layer, s_white_bitmap);
-    
-    bitmap_layer_set_compositing_mode(s_image_layer, GCompOpClear);
-    bitmap_layer_set_bitmap(s_image_layer, s_black_bitmap);    
+    s_white_layer = bitmap_layer_create(bounds);
+    bitmap_layer_set_bitmap(s_white_layer, s_white_bitmap);
+    bitmap_layer_set_compositing_mode(s_white_layer, GCompOpOr);
+    layer_add_child(window_layer, bitmap_layer_get_layer(s_white_layer));
+        
+    s_black_layer = bitmap_layer_create(bounds);
+    bitmap_layer_set_bitmap(s_black_layer, s_black_bitmap);    
+    bitmap_layer_set_compositing_mode(s_black_layer, GCompOpClear);
+    layer_add_child(window_layer, bitmap_layer_get_layer(s_black_layer));
   #elif PBL_PLATFORM_BASALT
+    s_image_layer = bitmap_layer_create(bounds);
     bitmap_layer_set_bitmap(s_image_layer, s_image_bitmap);
     bitmap_layer_set_compositing_mode(s_image_layer, GCompOpSet); 
+    layer_add_child(window_layer, bitmap_layer_get_layer(s_image_layer));
   #endif
   
   
-  bitmap_layer_set_alignment(s_image_layer, GAlignCenter);
-  layer_add_child(window_layer, bitmap_layer_get_layer(s_image_layer));
+  //bitmap_layer_set_alignment(s_image_layer, GAlignCenter);
+  //
 }
 
 static void window_unload(Window *window) {
-  bitmap_layer_destroy(s_image_layer);
+  
   
   #ifdef PBL_PLATFORM_APLITE
     gbitmap_destroy(s_black_bitmap);
     gbitmap_destroy(s_white_bitmap);
+    bitmap_layer_destroy(s_white_layer);
+    bitmap_layer_destroy(s_black_layer);
   #elif PBL_PLATFORM_BASALT
     gbitmap_destroy(s_image_bitmap);
+    bitmap_layer_destroy(s_image_layer);
   #endif
   
   layer_destroy(s_hands_layer);
