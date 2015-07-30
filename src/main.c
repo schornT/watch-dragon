@@ -1,5 +1,7 @@
 #include "header.h"
 #include "pebble.h"
+  
+#define KEY_COLOUR 1
 
 static Window *window;
 static Layer *s_hands_layer;

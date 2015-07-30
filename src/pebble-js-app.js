@@ -1,5 +1,12 @@
 //Taking this from my H2G2 face. Not sure where I got that from...
 
+
+Pebble.addEventListener('ready',
+  function(e) {
+    console.log('JavaScript app ready and running!');
+  }
+);
+
 Pebble.addEventListener("showConfiguration",
   function(e) {
     //Load the remote config page
@@ -15,7 +22,7 @@ Pebble.addEventListener("webviewclosed",
  
     //Send to Pebble, persist there
     Pebble.sendAppMessage(
-      {"KEY_INVERT": configuration.invert},
+      {"KEY_COLOUR": configuration.colour},
       function(e) {
         console.log("Sending settings data...");
       },
