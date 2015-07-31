@@ -67,7 +67,7 @@ static void window_load(Window *window) {
     s_white_bitmap = gbitmap_create_with_resource(RESOURCE_ID_DRAGON_WHITE);
     s_black_bitmap = gbitmap_create_with_resource(RESOURCE_ID_DRAGON_BLACK);
   #elif PBL_PLATFORM_BASALT
-    s_image_bitmap = gbitmap_create_with_resource(RESOURCE_ID_DRAGON);
+    s_image_bitmap = gbitmap_create_with_resource(RESOURCE_ID_DRAGON_GREEN);
   #endif
   
   //s_image_layer = bitmap_layer_create(bounds);
