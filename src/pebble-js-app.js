@@ -1,6 +1,6 @@
 //Taking this from my H2G2 face. Not sure where I got that from...
 
-
+/*
 Pebble.addEventListener('ready',
   function(e) {
     console.log('JavaScript app ready and running!');
@@ -10,7 +10,7 @@ Pebble.addEventListener('ready',
 Pebble.addEventListener("showConfiguration",
   function(e) {
     //Load the remote config page
-    Pebble.openURL("https://dl.dropboxusercontent.com/u/18421157/Link%20to%20dragon-config.html");
+    Pebble.openURL("");
   }
 );
 
@@ -32,3 +32,4 @@ Pebble.addEventListener("webviewclosed",
     );
   }
 );
+*/

@@ -1,14 +1,23 @@
 {
     "appKeys": {},
     "capabilities": [
-        "location",
-        "configurable"
+        ""
     ],
     "companyName": "Tristan Schorn",
-    "longName": "dragon",
+    "longName": "Dragon Clock",
     "projectType": "native",
     "resources": {
         "media": [
+            {
+                "file": "images/converted-wood2.png",
+                "name": "WOOD_DOOR_2",
+                "type": "png"
+            },
+            {
+                "file": "images/converted-wood.png",
+                "name": "WOOD_DOOR_1",
+                "type": "png"
+            },
             {
                 "file": "images/dragon_background_trans_coloured_GREEN.png",
                 "name": "DRAGON_GREEN",
@@ -32,13 +41,13 @@
         ]
     },
     "sdkVersion": "3",
-    "shortName": "dragon",
+    "shortName": "dragonClock",
     "targetPlatforms": [
         "aplite",
         "basalt"
     ],
     "uuid": "785fae95-01d2-4de6-a577-d771197b8673",
-    "versionLabel": "0.01",
+    "versionLabel": "1.1",
     "watchapp": {
         "watchface": true
     }

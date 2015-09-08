@@ -11,8 +11,8 @@ static Layer *s_hands_layer;
 static BitmapLayer *s_black_layer, *s_white_layer;
 static GBitmap *s_white_bitmap, *s_black_bitmap;
 #elif PBL_PLATFORM_BASALT
-static BitmapLayer *s_image_layer;
-static GBitmap *s_image_bitmap;
+static BitmapLayer *s_image_layer, *s_door_layer;
+static GBitmap *s_image_bitmap, *s_door_bitmap;
 #endif
   
 static GPath *s_minute_arrow, *s_hour_arrow;
@@ -59,19 +59,36 @@ static void window_load(Window *window) {
   Layer *window_layer = window_get_root_layer(window);
   GRect bounds = layer_get_frame(window_layer);
   
-  s_hands_layer = layer_create(bounds);
-  layer_set_update_proc(s_hands_layer, hands_update_proc);
-  layer_add_child(window_layer, s_hands_layer);
+  int32_t colourChosen = RESOURCE_ID_DRAGON;
 
+  
   #ifdef PBL_PLATFORM_APLITE
     s_white_bitmap = gbitmap_create_with_resource(RESOURCE_ID_DRAGON_WHITE);
     s_black_bitmap = gbitmap_create_with_resource(RESOURCE_ID_DRAGON_BLACK);
   #elif PBL_PLATFORM_BASALT
-    s_image_bitmap = gbitmap_create_with_resource(RESOURCE_ID_DRAGON_GREEN);
+    s_image_bitmap = gbitmap_create_with_resource(colourChosen);
+    s_door_bitmap = gbitmap_create_with_resource(RESOURCE_ID_WOOD_DOOR_2);
   #endif
   
+  
+  //door
+  #ifdef PBL_PLATFORM_BASALT
+    s_door_layer = bitmap_layer_create(bounds);
+    bitmap_layer_set_bitmap(s_door_layer, s_door_bitmap);
+    bitmap_layer_set_compositing_mode(s_door_layer, GCompOpSet); 
+    layer_add_child(window_layer, bitmap_layer_get_layer(s_door_layer));
+  #endif
+  
+  //hands
+  s_hands_layer = layer_create(bounds);
+  layer_set_update_proc(s_hands_layer, hands_update_proc);
+  layer_add_child(window_layer, s_hands_layer);
+
+  
+
   //s_image_layer = bitmap_layer_create(bounds);
   
+  //dragon
   #ifdef PBL_PLATFORM_APLITE
     s_white_layer = bitmap_layer_create(bounds);
     bitmap_layer_set_bitmap(s_white_layer, s_white_bitmap);
@@ -105,6 +122,8 @@ static void window_unload(Window *window) {
   #elif PBL_PLATFORM_BASALT
     gbitmap_destroy(s_image_bitmap);
     bitmap_layer_destroy(s_image_layer);
+    gbitmap_destroy(s_door_bitmap);
+    bitmap_layer_destroy(s_door_layer);
   #endif
   
   layer_destroy(s_hands_layer);
